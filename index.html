@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snapchat</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #fffc00;
+      min-height: 100vh;
+      color: #111;
+    }
+
+    header {
+      height: 65px;
+      background: #fffc00;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .brand {
+      font-size: 25px;
+      font-weight: 800;
+    }
+
+    .ghost {
+      width: 42px;
+      height: 42px;
+      background: white;
+      border: 2px solid #111;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 23px;
+    }
+
+    .login-page {
+      max-width: 420px;
+      margin: 55px auto;
+      padding: 20px;
+    }
+
+    .login-card {
+      background: white;
+      padding: 32px 25px;
+      border-radius: 18px;
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(0,0,0,.15);
+    }
+
+    .big-ghost {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: #fffc00;
+      border: 3px solid #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 50px;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #666;
+      margin-bottom: 25px;
+      line-height: 1.4;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      margin: 7px 0;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      margin-top: 12px;
+      border: none;
+      border-radius: 10px;
+      background: #111;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: .85;
+    }
+
+    .demo-note {
+      margin-top: 18px;
+      padding: 12px;
+      background: #f1f1f1;
+      border-radius: 10px;
+      color: #555;
+      font-size: 12px;
+    }
+
+    #app {
+      display: none;
+      min-height: calc(100vh - 65px);
+      background: #f5f5f5;
+      padding-bottom: 80px;
+    }
+
+    .profile {
+      background: #111;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .profile-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #fffc00;
+      color: #111;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38px;
+    }
+
+    .content {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 15px;
+    }
+
+    .story {
+      background: white;
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 15px;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(0,0,0,.08);
+    }
+
+    .story-circle {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      background: #fffc00;
+      border: 4px solid #111;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+    }
+
+    .nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 65px;
+      background: white;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border-top: 1px solid #ddd;
+    }
+
+    .nav button {
+      width: auto;
+      background: none;
+      color: #111;
+      margin: 0;
+      padding: 8px 15px;
+      font-size: 13px;
+    }
+
+    .logout {
+      background: #e53935;
+      margin-top: 20px;
+    }
+
+    .error {
+      color: #d00;
+      font-size: 13px;
+      margin-top: 8px;
+      display: none;
+    }
+
+    @media (max-width: 500px) {
+      .login-page {
+        margin: 30px auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">Snapchat</div>
+  <div class="ghost">👻</div>
+</header>
+
+
+<!-- LOGIN -->
+
+<div id="loginPage" class="login-page">
+
+  <div class="login-card">
+
+    <div class="big-ghost">👻</div>
+
+    <h1>Log in to Snapchat</h1>
+
+    <p class="subtitle">
+      Enter your username and password to continue.
+    </p>
+
+    <input
+      id="username"
+      type="text"
+      placeholder="Username"
+      autocomplete="username"
+    >
+
+    <input
+      id="password"
+      type="password"
+      placeholder="Password"
+      autocomplete="current-password"
+    >
+
+    <div id="error" class="error">
+      Please enter both username and password.
+    </div>
+
+    <button onclick="login()">
+      Log In
+    </button>
+
+    <div class="demo-note">
+      Academic demonstration only. Login details are kept
+      locally in this browser and are not sent anywhere.
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- APP AFTER LOGIN -->
+
+<div id="app">
+
+  <div class="profile">
+
+    <div class="profile-avatar">👻</div>
+
+    <h2 id="userDisplay" style="margin-top:12px;">
+      Username
+    </h2>
+
+    <p style="margin-top:5px;">
+      My Profile
+    </p>
+
+  </div>
+
+
+  <div class="content">
+
+    <div class="story">
+
+      <div class="story-circle">+</div>
+
+      <h3 style="margin-top:15px;">
+        Add to My Story
+      </h3>
+
+      <p style="color:#777;margin-top:8px;">
+        Share a moment with your friends.
+      </p>
+
+    </div>
+
+
+    <div class="story">
+
+      <h2>📸 Camera</h2>
+
+      <p style="margin:10px 0;color:#666;">
+        Your camera feature goes here.
+      </p>
+
+      <button onclick="cameraDemo()">
+        Open Camera
+      </button>
+
+    </div>
+
+
+    <div class="story">
+
+      <h2>💬 Chats</h2>
+
+      <p style="margin-top:10px;color:#666;">
+        Your conversations will appear here.
+      </p>
+
+    </div>
+
+
+    <button class="logout" onclick="logout()">
+      Log Out
+    </button>
+
+  </div>
+
+
+  <div class="nav">
+
+    <button onclick="showMessage('Camera')">
+      📷<br>Camera
+    </button>
+
+    <button onclick="showMessage('Chats')">
+      💬<br>Chats
+    </button>
+
+    <button onclick="showMessage('Stories')">
+      🔥<br>Stories
+    </button>
+
+    <button onclick="showMessage('Profile')">
+      👤<br>Profile
+    </button>
+
+  </div>
+
+</div>
+
+
+<script>
+
+  function login() {
+
+    const username =
+      document.getElementById("username").value.trim();
+
+    const password =
+      document.getElementById("password").value;
+
+    const error =
+      document.getElementById("error");
+
+    if (username === "" || password === "") {
+      error.style.display = "block";
+      return;
+    }
+
+    error.style.display = "none";
+
+    /*
+      Demo session:
+      The password is stored only in this browser session.
+      It is never sent to a server.
+    */
+
+    sessionStorage.setItem("demoUser", username);
+    sessionStorage.setItem("demoLoggedIn", "true");
+
+    showApp(username);
+  }
+
+
+  function showApp(username) {
+
+    document.getElementById("loginPage").style.display = "none";
+
+    document.getElementById("app").style.display = "block";
+
+    document.getElementById("userDisplay").innerText =
+      username;
+
+  }
+
+
+  function logout() {
+
+    sessionStorage.removeItem("demoUser");
+    sessionStorage.removeItem("demoLoggedIn");
+
+    document.getElementById("app").style.display = "none";
+
+    document.getElementById("loginPage").style.display = "block";
+
+    document.getElementById("username").value = "";
+    document.getElementById("password").value = "";
+
+  }
+
+
+  function cameraDemo() {
+
+    alert("Camera feature is available in the next stage of this academic project.");
+
+  }
+
+
+  function showMessage(section) {
+
+    alert(section + " section selected.");
+
+  }
+
+
+  window.onload = function() {
+
+    const loggedIn =
+      sessionStorage.getItem("demoLoggedIn");
+
+    const username =
+      sessionStorage.getItem("demoUser");
+
+    if (loggedIn === "true" && username) {
+      showApp(username);
+    }
+
+  };
+
+</script>
+
+</body>
+</html>
